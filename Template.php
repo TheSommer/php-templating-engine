@@ -42,10 +42,10 @@ class Template {
         $contents = preg_replace('/\[' . $key . '\]/', $value, $contents);
       }
 
-      eval(' ?> ' . $contents . ' <?php ');
+      echo($contents);
     }
     else{
-      exit('HTML-Template not found.');
+      throw new Exception('HTML Template (' . $templateName . '.html) missing.');
     }
   }
 }

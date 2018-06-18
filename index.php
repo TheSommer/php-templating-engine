@@ -2,7 +2,7 @@
 /**
  * @author Rasmus Sommer Larsen
  */
- 
+
 include('App.php');
 include('Template.php');
 
@@ -29,6 +29,12 @@ $profileTemplate->registerVariables($profileData);
 $app->registerPage('profile', $profileTemplate);
 
 /*
+* Incomplete page, missing HTML template.
+*/
+$missingHtmlTemplate = new Template();
+$app->registerPage('missing', $missingHtmlTemplate);
+
+/*
 * Determine requested page, default to Home.
 */
 if(isset($_GET["page"])){
@@ -41,6 +47,10 @@ else{
 /*
 * Tell the App to render the requested page.
 */
-$app->renderPage($reqPage);
-
+try{
+  $app->renderPage($reqPage);
+}
+catch(Exception $e){
+  echo($e->getMessage());
+}
 ?>

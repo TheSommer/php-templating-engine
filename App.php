@@ -24,7 +24,7 @@ class App {
       $this->pages[$name]->render($name);
     }
     else{
-      exit("Page not found.");
+      throw new Exception('Page could not be found.');
     }
   }
 }
